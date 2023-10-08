@@ -6,7 +6,6 @@ export default class extends Controller {
   }
 
   connect(){
-    /* testing */
     this.originalText = this.element.textContent
   }
 

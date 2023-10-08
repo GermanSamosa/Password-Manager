@@ -1,6 +1,6 @@
 = link_to "← Back", root_path, class: "block mb-4 no-underline text-sx text-blue-500"
-%div{ class: "mb-4 flex justify-between items-center"}
-  %h1{ class: "mb-0" }
+.mb-4.flex.justify-between.items-center
+  %h1.mb-0
     = @password.url
     = link_to @password.url, target: :_blank do
       %svg.w-6.h-6.inline-block.text-blue-500{fill: "none", stroke: "currentColor", "stroke-width" => "1.5", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
@@ -10,34 +10,34 @@
 
 %h3
   Credentials
-%h5{ class: "mb-0 text-sx" }
+%h5.mb-0.text-sx
   Username/Email
-%div{ class: "flex gap-1" }
-  %pre{ class: "my-0 flex-grow" }
+%div.flex.gap-1
+  %pre.my-0.flex-grow
     %code
       = @password.username
   = button_tag "Copy", class: "px-6 py-2.5 bg-gray-200 rounded", data: {controller: "clipboard", clipboard_content_value: @password.username, action: "click->clipboard#copy"}
 
-%h5{ class: "mb-0 mt-4 text-sx" }
+%h5.mb-0.mt-4.text-sx
   Password
-%div{ class: "flex items-center gap-1" }
-  %pre{ class: "my-0 flex-grow" }
+%div.flex.items-center.gap-1
+  %pre.my-0.flex-grow
     %code
       = @password.password
   = button_tag "Copy", class: "px-6 py-2.5 bg-gray-200 rounded", data: {controller: "clipboard", clipboard_content_value: @password.password, action: "click->clipboard#copy"}
 
-%div{ class: "mb-4 mt-8 flex justify-between items-center" }
-  %h3{ class: "my-0" }
+%div.mb-4.mt-8.flex.justify-between.items-center
+  %h3.my-0
     Shared With
   = link_to "Add a user", new_password_share_path(@password) if current_user_password.shareable?
   
-%div{ class: "flex flex-col gap-1 divide-y divide-gray-100" }
+%div.flex.flex-col.gap-1.divide-y.divide-gray-100
   - @password.user_passwords.includes(:user).each do |user_password|
-    %div{ class: "grid grid-cols-4 gap-4" }
-      %div{ class: "col-span-2" }
+    %div.grid.grid-cols-4.gap-4
+      %div.col-span-2
         = user_password.user.email
-      %div{ class: "text-center" }
+      %div.text-center
         = user_password.role
-      %div{ class: "text-right" }
+      %div.text-right
         = button_to "Remove", password_share_path(@password, user_password), method: :delete, data: { turbo_confirm: "Are you sure?"} if current_user_password.shareable?
     
