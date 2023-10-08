@@ -1,0 +1,7 @@
+%div{ class: "flex justify-between items-center"}
+  %h1{ class: "mb-1" }
+    Your Passwords
+
+  = link_to "New Password", new_password_path
+
+= render @passwords

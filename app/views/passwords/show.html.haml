@@ -1,0 +1,43 @@
+= link_to "← Back", root_path, class: "block mb-4 no-underline text-sx text-blue-500"
+%div{ class: "mb-4 flex justify-between items-center"}
+  %h1{ class: "mb-0" }
+    = @password.url
+    = link_to @password.url, target: :_blank do
+      %svg.w-6.h-6.inline-block.text-blue-500{fill: "none", stroke: "currentColor", "stroke-width" => "1.5", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
+        %path{d: "M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25", "stroke-linecap" => "round", "stroke-linejoin" => "round"}
+
+  = link_to "Edit", edit_password_path(@password) if current_user_password.editable?
+
+%h3
+  Credentials
+%h5{ class: "mb-0 text-sx" }
+  Username/Email
+%div{ class: "flex gap-1" }
+  %pre{ class: "my-0 flex-grow" }
+    %code
+      = @password.username
+  = button_tag "Copy", class: "px-6 py-2.5 bg-gray-200 rounded", data: {controller: "clipboard", clipboard_content_value: @password.username, action: "click->clipboard#copy"}
+
+%h5{ class: "mb-0 mt-4 text-sx" }
+  Password
+%div{ class: "flex items-center gap-1" }
+  %pre{ class: "my-0 flex-grow" }
+    %code
+      = @password.password
+  = button_tag "Copy", class: "px-6 py-2.5 bg-gray-200 rounded", data: {controller: "clipboard", clipboard_content_value: @password.password, action: "click->clipboard#copy"}
+
+%div{ class: "mb-4 mt-8 flex justify-between items-center" }
+  %h3{ class: "my-0" }
+    Shared With
+  = link_to "Add a user", new_password_share_path(@password) if current_user_password.shareable?
+  
+%div{ class: "flex flex-col gap-1 divide-y divide-gray-100" }
+  - @password.user_passwords.includes(:user).each do |user_password|
+    %div{ class: "grid grid-cols-4 gap-4" }
+      %div{ class: "col-span-2" }
+        = user_password.user.email
+      %div{ class: "text-center" }
+        = user_password.role
+      %div{ class: "text-right" }
+        = button_to "Remove", password_share_path(@password, user_password), method: :delete, data: { turbo_confirm: "Are you sure?"} if current_user_password.shareable?
+    
