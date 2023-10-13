@@ -1,23 +1,32 @@
 = form_with model: password do |form|
   - if form.object.errors.any?
     - form.object.errors.full_messages.each do |message|
-      %div 
+      %p.px-4.rounded.inline-block.bg-danger-100.text-center.text-danger-800.mt-4
         = message 
 
-  %div 
-    = form.label :url
-    = form.url_field :url
 
-  %div 
-    = form.label :username
-    = form.text_field :username
+  .flex.flex-wrap.-mx-3.mb-6
+    .w-full.px-3
+      = form.label :url, {class: "block uppercase tracking-wide text-text-900 text-xs font-bold mb-2"}
 
-  %div 
-    = form.label :password
-    = form.password_field :password
+      = form.url_field :url, { class: "appearance-none block w-full bg-background-50 text-text-900 border border-accent-800 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-background-50 focus:border-accent-500", spellcheck: false, autocomplete: false }
 
-  %div
-    = form.submit
-    = button_tag "Delete", form: "delete_password" if form.object.persisted? && current_user_password.deleteable?
+  .flex.flex-wrap.-mx-3.mb-6
+    .w-full.px-3.mb-6.md:mb-0{class: "md:w-1/2"}
+      = form.label :username,{ class: "block uppercase tracking-wide text-text-900 text-xs font-bold mb-2"}
+
+      = form.text_field :username,{class: "appearance-none block w-full bg-background-50 text-text-900 border border-accent-800 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background-50 focus:border-accent-500"}
+
+      %p.text-red-500.text-xs.italic Please fill out this field.
+
+    .w-full.px-3{class: "md:w-1/2"}
+      = form.label :password,{ class: "block uppercase tracking-wide text-text-900 text-xs font-bold mb-2"}
+
+      = form.password_field :password, { class: "appearance-none block w-full bg-background-50 text-text-900 border border-accent-800 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background-50 focus:border-accent-500", spellcheck: false, autocomplete: false }
+
+    %div
+      .btn.inline.btn-secondary
+        = button_to "Add Password"
+      = button_tag "Delete", form: "delete_password" if form.object.persisted? && current_user_password.deleteable?
 
 = form_with model: password, method: :delete, id: "delete_password", data: {turbo_confirm: "Are you sure?"}

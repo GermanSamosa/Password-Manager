@@ -1,17 +1,18 @@
-%nav.flex.justify-between
-  %div.flex.items-center.gap-2
-    = link_to "Password Manager", root_path , class: "text-xl font-bold no-underline"
-    %ul.list-none.flex.gap-2
-      %li 
-        = link_to "Home", root_path 
-  %ul.list-none.flex.items-center.gap-2
-    - if user_signed_in?
-      %li 
-        = link_to "Profile", edit_user_registration_path
-      %li 
-        = button_to "Logout", destroy_user_session_path, method: :delete
-    - else 
-      %li 
-        = link_to "Login", new_user_session_path
-      %li 
-        = button_to "Sign up", new_user_registration_path
+= turbo_frame_tag :nav, target: "application_content" do
+  %nav.flex.justify-between
+    %div.flex.items-center.gap-2
+      = link_to "Password Manager", root_path , class: "text-xl font-bold no-underline"
+      %ul.list-none.flex.gap-2
+        %li 
+          = link_to "Home", root_path 
+    %ul.list-none.flex.items-center.gap-2
+      - if user_signed_in?
+        %li 
+          = link_to "Profile", edit_user_registration_path
+        %li 
+          = button_to "Logout", destroy_user_session_path, method: :delete
+      - else 
+        %li 
+          = link_to "Login", new_user_session_path
+        %li 
+          = button_to "Sign up", new_user_registration_path

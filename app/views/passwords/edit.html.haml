@@ -1,4 +1,7 @@
-%h1
-  Edit Password 
+= turbo_frame_tag "info" do
+  = link_to "← Back", root_path, class: "block mb-4 no-underline inline text-sx text-secondary-500 hover:text-secondary-600"
+  .mb-4.flex.justify-between.items-center
+    %h1.mb-0
+      Edit Password
 
-= render "form", password: @password
+  = render "form", password: @password
