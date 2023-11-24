@@ -18,10 +18,13 @@ class PasswordsController < ApplicationController
     @password = Password.new(password_params)
     @password.user_passwords.new(user: current_user, role: :owner)
 
-    if @password.save
-      redirect_to @password
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @password.save
+        format.html { redirect_to @password, notice: "Added #{@password.url}" }
+        # format.turbo_stream
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -37,7 +40,11 @@ class PasswordsController < ApplicationController
 
   def destroy
     @password.destroy
-    redirect_to root_path
+    
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.turbo_stream
+    end
   end
 
   private

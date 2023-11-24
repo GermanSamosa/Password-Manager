@@ -9,6 +9,8 @@ class Password < ApplicationRecord
   validates :username, presence: true
   validates :password, presence: true
 
+  broadcasts_to ->(password) { "passwords" }, inserts_by: :prepend
+
   def shareable_users
     User.excluding(users)
   end

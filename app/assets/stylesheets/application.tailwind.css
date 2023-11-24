@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --white: #fff;
+
     --text-50: #edeff7;
     --text-100: #dce0ef;
     --text-200: #b8c1e0;
@@ -78,6 +80,8 @@
   }
  @media (prefers-color-scheme: dark) {
     .dark {
+      --white: #fff;
+
       --text-50: #080a12;
       --text-100: #101423;
       --text-200: #1f2847;

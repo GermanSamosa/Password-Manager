@@ -1,17 +1,26 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.container.mx-auto.flex.justify-center.items-center.mt-40
+  .w-full.max-w-md
+    %h2.text-3xl.font-semibold.text-text-950.mb-6.flex.items-center
+      Password Manager
+      %svg.w-10.h-10.mx-2.text-primary-500{fill: "none", stroke: "currentColor", "stroke-width" => "1.5", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
+        %path{d: "M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z", "stroke-linecap" => "round", "stroke-linejoin" => "round"}
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .mt-4
+        .field.text-text-800
+          = f.label :email, class: "block.text-text-800.font-medium"
+          %input{:type => "email", :name => "email", :id => "email", :autocomplete => "email", :class => "mt-1 p-3 block w-full rounded-md bg-background-100 text-text-900 border-primary-500 border focus:outline-none focus:ring-accent-500 focus:border-accent-500"}
+      .mt-4
+        .field.text-text-800
+          = f.label :password, class: "block.text-text-800.font-medium"
+          %input{:type => "password", :name => "password", :id => "password", :autocomplete => "current-password", :class => "mt-1 p-3 block w-full rounded-md bg-background-100 text-text-900 border-primary-500 border focus:outline-none focus:ring-accent-500 focus:border-accent-500"}
+      .mt-4
+        - if devise_mapping.rememberable?
+          .flex.items-center
+            = f.check_box :remember_me, class: "accent-accent-500 rounded border-primary-500 bg-background-100 focus:bg-background-200 focus:border-accent-500"
+            .ml-2
+              = f.label :remember_me, class: "text-text-800"
+      .mt-4
+        %button{:type => "submit", :class => "w-full py-2 px-4 bg-primary-500 text-accent-500 font-semibold rounded-md hover:bg-primary-600 focus:outline-none focus:ring focus:border-primary-700"}
+          Log in
+    .mt-4.text-center
+      = render "devise/shared/links"

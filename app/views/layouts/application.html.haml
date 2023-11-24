@@ -9,9 +9,9 @@
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
-  %body.bg-background-50
+  %body.dark.bg-background-50
     %main.container.mx-auto
       .prose.max-w-none.px-5
         = render "shared/flash"
-        = render "shared/nav"
+        = render "shared/nav" if user_signed_in?
         = yield

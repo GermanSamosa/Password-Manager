@@ -7,26 +7,27 @@
 
   .flex.flex-wrap.-mx-3.mb-6
     .w-full.px-3
-      = form.label :url, {class: "block uppercase tracking-wide text-text-900 text-xs font-bold mb-2"}
-
-      = form.url_field :url, { class: "appearance-none block w-full bg-background-50 text-text-900 border border-accent-800 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-background-50 focus:border-accent-500", spellcheck: false, autocomplete: false }
+      = form.label :url, {class: "block uppercase tracking-wide text-text-800 text-xs font-bold mb-2"}
+      = form.url_field :url, { class: "appearance-none block w-full bg-background-50 text-text-800 border border-primary-500 rounded py-3 px-4 mb-3 leading-tight focus:bg-background-200 focus:border-accent-500", spellcheck: false, autocomplete: false }
 
   .flex.flex-wrap.-mx-3.mb-6
     .w-full.px-3.mb-6.md:mb-0{class: "md:w-1/2"}
-      = form.label :username,{ class: "block uppercase tracking-wide text-text-900 text-xs font-bold mb-2"}
+      = form.label :username,{ class: "block uppercase tracking-wide text-text-800 text-xs font-bold mb-2"}
 
-      = form.text_field :username,{class: "appearance-none block w-full bg-background-50 text-text-900 border border-accent-800 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background-50 focus:border-accent-500"}
+      = form.text_field :username,{class: "appearance-none block w-full bg-background-50 text-text-800 border border-primary-500 rounded py-3 px-4 leading-tight focus:bg-background-200 focus:border-accent-500", spellcheck: false, autocomplete: false}
 
       %p.text-red-500.text-xs.italic Please fill out this field.
 
     .w-full.px-3{class: "md:w-1/2"}
-      = form.label :password,{ class: "block uppercase tracking-wide text-text-900 text-xs font-bold mb-2"}
+      = form.label :password,{ class: "block uppercase tracking-wide text-text-800 text-xs font-bold mb-2"}
 
-      = form.password_field :password, { class: "appearance-none block w-full bg-background-50 text-text-900 border border-accent-800 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background-50 focus:border-accent-500", spellcheck: false, autocomplete: false }
+      = form.password_field :password, { class: "appearance-none block w-full bg-background-50 text-text-800 border border-primary-500 rounded py-3 px-4 leading-tight focus:bg-background-200 focus:border-accent-500", spellcheck: false, autocomplete: false }
 
     %div
-      .btn.inline.btn-secondary
-        = button_to "Add Password"
-      = button_tag "Delete", form: "delete_password" if form.object.persisted? && current_user_password.deleteable?
+      .inline
+        %button{:type => "submit", :class => "py-2 px-4 bg-primary-500 text-accent-500 font-semibold rounded-md hover:bg-primary-600 focus:outline-none focus:ring focus:border-primary-700"}
+          Add Password
+        -# = button_to "Add Password"
+      = button_tag "Delete", form: "delete_password", class: "py-2 px-4 bg-danger-400 text-white font-semibold rounded-md hover:bg-danger-600 focus:outline-none focus:ring focus:border-danger-700", data: { turbo: false } if form.object.persisted? && current_user_password.deleteable?
 
 = form_with model: password, method: :delete, id: "delete_password", data: {turbo_confirm: "Are you sure?"}

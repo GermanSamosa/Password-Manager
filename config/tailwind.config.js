@@ -10,6 +10,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     colors: {
+      'white': 'var(--white)',
       'text': {
         50: 'var(--text-50)',
         100: 'var(--text-100)',
