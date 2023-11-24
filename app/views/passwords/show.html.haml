@@ -1,15 +1,15 @@
 = turbo_frame_tag "info" do
   = link_to "← Back", root_path, class: "block mb-4 no-underline inline text-sx text-accent-600 hover:text-accent-700"
   .mb-4.flex.justify-between.items-center
-    %h1.mb-0.text-text-950
-      = @password.url
-      = link_to @password.url, target: :_blank do
+    = link_to @password.url, target: :_blank, class: "no-underline truncate" do
+      %h1.mb-0.text-text-950
+        = @password.url
         %svg.w-6.h-6.inline-block.text-accent-600{class: "hover:text-text-accent-700", fill: "none", stroke: "currentColor", "stroke-width" => "1.5", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
           %path{d: "M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25", "stroke-linecap" => "round", "stroke-linejoin" => "round"}
 
     - if current_user_password.editable?
       = link_to edit_password_path(@password), class: "flex items-center no-underline text-accent-600 hover:text-accent-700" do
-        .mx-1
+        .mx-1.ps-8
           Edit
         %svg.w-5.h-5{fill: "none", stroke: "currentColor", "stroke-width" => "1.5", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
           %path{d: "M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10", "stroke-linecap" => "round", "stroke-linejoin" => "round"}

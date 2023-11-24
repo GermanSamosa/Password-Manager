@@ -1,8 +1,11 @@
-%h1
-  Share Passwords 
+= turbo_frame_tag "info" do
+  = link_to "← Back", @password, class: "block mb-4 no-underline inline text-sx text-accent-500 hover:text-accent-600"
+  .mb-4.flex.justify-between.items-center
+    %h1.text-text-950.mb-0
+      Share Passwords 
 
-= render "form", 
-  password: @password, 
-  user_password: @user_password
+  = render "form", 
+    password: @password, 
+    user_password: @user_password
 
 

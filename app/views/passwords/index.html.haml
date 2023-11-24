@@ -5,20 +5,18 @@
     .mb-4.flex.justify-between.items-center
       %h1.mb-0.text-text-950
         Your Passwords
-  
-  %table.table-auto
-    %thead
-      %tr
-        %th.text-text-800
-          Website
-        %th.text-text-800
-          Username/Email 
-        %th.text-text-800 
-          Password 
-        %th.text-text-800 
-          Shared With 
-        %th.text-text-800 
-          Created At
-    %tbody
-      = turbo_frame_tag :passwords do
-        = render @passwords
+
+  .overflow-y-scroll.rounded-md
+    .grid.grid-cols-7.text-white.bg-primary-500.font-semibold
+      .px-2.col-span-2
+        Website
+      .px-2.col-span-2
+        Username
+      .px-2.col
+        Password
+      .px-2.col
+        Shared
+      .px-2.col
+        Created
+    = turbo_frame_tag :passwords do
+      = render @passwords

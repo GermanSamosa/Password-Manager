@@ -4,7 +4,6 @@
       %p.px-4.rounded.inline-block.bg-danger-100.text-center.text-danger-800.mt-4
         = message 
 
-
   .flex.flex-wrap.-mx-3.mb-6
     .w-full.px-3
       = form.label :url, {class: "block uppercase tracking-wide text-text-800 text-xs font-bold mb-2"}
@@ -16,14 +15,12 @@
 
       = form.text_field :username,{class: "appearance-none block w-full bg-background-50 text-text-800 border border-primary-500 rounded py-3 px-4 leading-tight focus:bg-background-200 focus:border-accent-500", spellcheck: false, autocomplete: false}
 
-      %p.text-red-500.text-xs.italic Please fill out this field.
-
     .w-full.px-3{class: "md:w-1/2"}
       = form.label :password,{ class: "block uppercase tracking-wide text-text-800 text-xs font-bold mb-2"}
 
       = form.password_field :password, { class: "appearance-none block w-full bg-background-50 text-text-800 border border-primary-500 rounded py-3 px-4 leading-tight focus:bg-background-200 focus:border-accent-500", spellcheck: false, autocomplete: false }
 
-    %div.mx-2
+    .float-right.mx-2.mt-6
       .inline.px-2
         %button{:type => "submit", :class => "py-2 px-4 bg-primary-500 text-white font-semibold rounded-md hover:bg-primary-600 focus:outline-none focus:ring focus:border-primary-700"}
           Add Password
