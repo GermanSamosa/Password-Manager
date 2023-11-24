@@ -1,1 +1,2 @@
-= turbo_stream.prepend(:passwords, partial: :password)
+= turbo_stream.prepend @passwords do
+  = render @password

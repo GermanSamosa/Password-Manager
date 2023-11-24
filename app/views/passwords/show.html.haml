@@ -38,15 +38,15 @@
     
     = link_to "Add a user", new_password_share_path(@password), class: "no-underline text-accent-600 hover:text-accent-700" if current_user_password.shareable?
     
-  %div.flex.flex-col.gap-1.divide-y.divide-gray-100
+  %div.flex.flex-col.gap-1.divide-y.divide
     - @password.user_passwords.includes(:user).each do |user_password|
-      %div.grid.grid-cols-4.gap-4
+      %div.grid.grid-cols-4.gap-2
         %div.col-span-2.text-text-700
           = user_password.user.email
         %div.text-center.text-text-700
           = user_password.role
         - if current_user_password.shareable?
-          %div.text-right
+          %div.text-center
             = button_to password_share_path(@password, user_password), class: "flex items-center text-danger-400 hover:text-danger-500", method: :delete, data: { turbo_confirm: "Are you sure?"} do
               .mx-1
                 Remove
